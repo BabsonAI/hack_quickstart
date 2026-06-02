@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Engineering Hackathon — Hack Overview &amp; Game Plan</title>
+<meta name="description" content="Hackathon overview: judging at 8:15 (hands down), 2-minute pitches, two ways to win, and a suggested timebox for the 3-hour build." />
+<style>
+  :root {
+    --green: #006747;
+    --green-deep: #00402c;
+    --green-bright: #00a36c;
+    --ink: #15211c;
+    --muted: #5b6b63;
+    --bg: #f4f7f4;
+    --card: #ffffff;
+    --line: #e4eae5;
+    --stop: #c0392b;
+    --amber: #c47f00;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 10px 30px rgba(8,40,28,.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--green); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: radial-gradient(130% 150% at 100% 0%, #00946a 0%, var(--green) 48%, var(--green-deep) 100%);
+    color: #fff;
+    padding: 54px 0 78px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+    opacity: .5;
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .16em; font-size: 12.5px; font-weight: 700;
+    color: rgba(255,255,255,.82); margin: 0 0 16px;
+  }
+  .hero h1 {
+    font-size: clamp(33px, 5.2vw, 54px); line-height: 1.04; margin: 0 0 16px;
+    font-weight: 800; letter-spacing: -.022em;
+  }
+  .hero .lead { font-size: clamp(16px, 2.2vw, 20px); margin: 0; color: rgba(255,255,255,.93); max-width: 640px; }
+  .stopbar {
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 30px;
+    background: rgba(0,0,0,.24); border: 1px solid rgba(255,255,255,.28);
+    padding: 12px 20px; border-radius: 999px; font-weight: 700; font-size: clamp(15px, 2vw, 18px);
+  }
+  .stopbar .pulse {
+    width: 11px; height: 11px; border-radius: 50%; background: #ff6b5e;
+    box-shadow: 0 0 0 0 rgba(255,107,94,.7); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,107,94,.65); }
+    70% { box-shadow: 0 0 0 12px rgba(255,107,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,107,94,0); }
+  }
+
+  /* ---------- At a glance cards ---------- */
+  .glance {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-top: -46px; margin-bottom: 8px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 22px 24px; box-shadow: var(--shadow);
+  }
+  .card .ico { font-size: 24px; line-height: 1; }
+  .card h3 { margin: 12px 0 6px; font-size: 17px; letter-spacing: -.01em; }
+  .card .big { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 10px 0 4px; }
+  .card p { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; }
+  .card.accent-stop { border-top: 3px solid var(--stop); }
+  .card.accent-mic  { border-top: 3px solid var(--green-bright); }
+  .card.accent-win  { border-top: 3px solid var(--amber); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .pill {
+    font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px;
+    background: #eef4f0; color: var(--green); border: 1px solid #dcebe2;
+  }
+  .pill.amber { background: #fbf2e0; color: #95610b; border-color: #f0dcae; }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 40px 0 8px; }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; }
+  .section-head h2 { font-size: clamp(22px, 3vw, 28px); margin: 0; letter-spacing: -.02em; }
+  .section-head .tag { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .section-sub { margin: 0 0 26px; color: var(--muted); max-width: 720px; }
+
+  /* ---------- Timeline ---------- */
+  .timeline { position: relative; margin: 0; padding: 0; list-style: none; }
+  .timeline::before {
+    content: ""; position: absolute; left: 78px; top: 6px; bottom: 30px; width: 2px;
+    background: linear-gradient(var(--green-bright), var(--line));
+  }
+  .t-item { position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 22px; padding: 0 0 22px 0; }
+  .t-time {
+    text-align: right; font-weight: 800; font-size: 15px; color: var(--green); padding-top: 13px;
+    white-space: nowrap;
+  }
+  .t-body {
+    position: relative; background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 14px 18px; box-shadow: var(--shadow);
+  }
+  .t-body::before {
+    content: ""; position: absolute; left: -23px; top: 18px; width: 13px; height: 13px;
+    border-radius: 50%; background: #fff; border: 3px solid var(--green-bright); z-index: 2;
+  }
+  .t-body h4 { margin: 0 0 3px; font-size: 16px; }
+  .t-body .dur { font-size: 12.5px; font-weight: 700; color: var(--green-bright); text-transform: uppercase; letter-spacing: .05em; }
+  .t-body p { margin: 5px 0 0; color: var(--muted); font-size: 14.5px; }
+
+  .t-item.finish .t-time { color: var(--stop); }
+  .t-item.finish .t-body { background: #fff5f3; border-color: #f3cfc8; }
+  .t-item.finish .t-body::before { border-color: var(--stop); }
+  .t-item.finish .t-body h4 { color: var(--stop); }
+  .t-item.finish .dur { color: var(--stop); }
+
+  .halfway {
+    display: inline-flex; align-items: center; gap: 9px; margin: 6px 0 28px;
+    background: #eef4f0; border: 1px dashed #bcd9c9; color: var(--green-deep);
+    padding: 9px 15px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  }
+
+  /* ---------- Principles ---------- */
+  .principles { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 18px; margin-top: 4px; }
+  .feature {
+    grid-row: span 2; display: flex; flex-direction: column;
+    background: linear-gradient(180deg, #073d2b 0%, #002a1d 100%); color: #fff;
+    border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+  }
+  .feature .scale { margin-top: auto; }
+  .feature h3 { margin: 0 0 8px; font-size: 19px; }
+  .feature p { margin: 0 0 10px; color: rgba(255,255,255,.85); font-size: 14.5px; }
+  .feature .scale { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; font-weight: 700; }
+  .bar { flex: 1; height: 8px; border-radius: 999px; background: rgba(255,255,255,.16); position: relative; overflow: hidden; }
+  .bar > span { position: absolute; inset: 0 50% 0 0; background: linear-gradient(90deg, var(--green-bright), #5fd6a8); }
+  .ptile {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 20px; box-shadow: var(--shadow);
+  }
+  .ptile .ico { font-size: 20px; }
+  .ptile h4 { margin: 8px 0 4px; font-size: 15.5px; }
+  .ptile p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  /* ---------- Footer ---------- */
+  footer { margin-top: 46px; border-top: 1px solid var(--line); background: #fff; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; padding-top: 22px; padding-bottom: 26px; }
+  footer .brand { font-weight: 800; letter-spacing: -.01em; }
+  footer .brand span { color: var(--green); }
+  footer .links a { margin-left: 18px; text-decoration: none; font-weight: 600; font-size: 14.5px; }
+  footer .links a:hover { text-decoration: underline; }
+  footer .updated { color: var(--muted); font-size: 13px; width: 100%; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 820px) {
+    .glance { grid-template-columns: 1fr; margin-top: -56px; }
+    .principles { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 540px) {
+    .timeline::before { left: 58px; }
+    .t-item { grid-template-columns: 48px 1fr; gap: 16px; }
+    .t-time { font-size: 13.5px; }
+  }
+
+  /* ---------- Print (so it works as a literal 1-pager) ---------- */
+  @media print {
+    body { background: #fff; }
+    .hero { background: var(--green) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 28px 0; }
+    .card, .t-body, .ptile, .feature { box-shadow: none; break-inside: avoid; }
+    .stopbar .pulse { animation: none; }
+    section.block { padding: 18px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Babson AI · AI Engineering Hackathon</p>
+      <h1>Build something interesting.<br />Have something to show.</h1>
+      <p class="lead">Three hours, one demo. Here's the game plan — when judging starts, how you present, how you win, and how to spend the clock so you actually have something to show at the end.</p>
+      <div class="stopbar"><span class="pulse"></span>&nbsp;Hands down at <strong>&nbsp;8:15</strong> &nbsp;·&nbsp; judging begins</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- At a glance -->
+    <section class="glance" aria-label="At a glance">
+      <div class="card accent-stop">
+        <div class="ico">🛑</div>
+        <h3>Hands down</h3>
+        <div class="big">8:15</div>
+        <p>Tools down — judging starts. Whatever is built and running at 8:15 is what you present. No "give me five more minutes."</p>
+      </div>
+      <div class="card accent-mic">
+        <div class="ico">🎤</div>
+        <h3>Your pitch</h3>
+        <div class="big">2 minutes</div>
+        <p>Present however you like — a live demo, a few slides, or a conceptual walkthrough. Two minutes goes fast: lead with the point.</p>
+      </div>
+      <div class="card accent-win">
+        <div class="ico">🏆</div>
+        <h3>Two ways to win</h3>
+        <div class="big" style="font-size:22px;margin-top:14px;">Vote&nbsp;+&nbsp;Judges</div>
+        <div class="pill-row">
+          <span class="pill">Popular vote — audience survey</span>
+          <span class="pill amber">Hack-admin judged pick</span>
+        </div>
+        <p style="margin-top:12px;">Win the room <em>and</em> impress the judges: a clear story plus real substance covers both.</p>
+      </div>
+    </section>
+
+    <!-- Game plan / timebox -->
+    <section class="block" aria-label="Suggested timebox">
+      <div class="section-head">
+        <h2>Spend the clock wisely</h2>
+        <span class="tag">suggested timebox · 3-hour hack</span>
+      </div>
+      <p class="section-sub">A plan beats drift. These are suggestions, not rules — but the back half is where demos are won or lost, so protect it. <em>Times assume a ~5:15 start; shift them to match your actual start time.</em></p>
+
+      <div class="halfway">⚖️&nbsp; Halfway checkpoint (~6:45): have <strong>something runnable</strong>. If not, cut scope now.</div>
+
+      <ol class="timeline">
+        <li class="t-item">
+          <div class="t-time">5:15</div>
+          <div class="t-body">
+            <span class="dur">20 min · Pick &amp; scope</span>
+            <h4>Lock the one thing you'll demo</h4>
+            <p>Decide the single thing you'll show at 8:15 and say it in one sentence. Go smaller than feels safe — one feature done beats five half-built.</p>
+          </div>
+        </li>
+        <li class="t-item">
+          <div class="t-time">5:35</div>
+          <div class="t-body">
+            <span class="dur">15 min · Set up</span>
+            <h4>Keys, repo, a running skeleton</h4>
+            <p>API keys, a repo, and a "hello world" that actually runs. Don't sink 40 minutes into setup — see the <a href="https://github.com/BabsonAI/hack_quickstart">tools &amp; quickstart</a>.</p>
+          </div>
+        </li>
+        <li class="t-item">
+          <div class="t-time">5:50</div>
+          <div class="t-body">
+            <span class="dur">85 min · Build the core</span>
+            <h4>One path, end to end</h4>
+            <p>Get the most important path working start-to-finish before adding anything else. Lean on AI to move fast — but keep producing, not just reading.</p>
+          </div>
+        </li>
+        <li class="t-item">
+          <div class="t-time">7:15</div>
+          <div class="t-body">
+            <span class="dur">30 min · Make it demoable</span>
+            <h4>Feature freeze, then polish</h4>
+            <p>Stop adding. Smooth the one path you'll show, load sample data, and remove anything that can break live. A rough thing that runs beats a slick thing that doesn't.</p>
+          </div>
+        </li>
+        <li class="t-item">
+          <div class="t-time">7:45</div>
+          <div class="t-body">
+            <span class="dur">20 min · Prep the pitch</span>
+            <h4>Build your 2 minutes</h4>
+            <p>Slide or script. Decide who talks and who clicks. Open on the point, not the backstory. Run it once, out loud, against the clock.</p>
+          </div>
+        </li>
+        <li class="t-item">
+          <div class="t-time">8:05</div>
+          <div class="t-body">
+            <span class="dur">10 min · Buffer</span>
+            <h4>Save, commit, reset</h4>
+            <p>Commit and push. Reset your demo to a clean starting state. Close the noisy tabs. Breathe — things always wobble at the end.</p>
+          </div>
+        </li>
+        <li class="t-item finish">
+          <div class="t-time">8:15</div>
+          <div class="t-body">
+            <span class="dur">Hands down</span>
+            <h4>Tools down → judging &amp; pitches</h4>
+            <p>Present what you have. Done and shown beats perfect and hidden.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Principles -->
+    <section class="block" aria-label="How to think about it">
+      <div class="section-head">
+        <h2>Consume vs. create</h2>
+        <span class="tag">the one habit that decides your demo</span>
+      </div>
+      <p class="section-sub">AI makes it dangerously easy to spend three hours reading docs, watching demos, and chatting with a model — all input, nothing to show. You're judged on what you <strong>create</strong>, not what you consumed.</p>
+
+      <div class="principles">
+        <div class="feature">
+          <h3>Tilt toward creating</h3>
+          <p>Consuming (reading, prompting, exploring) is how you learn fast — early on, lean into it. But the meter has to swing the other way before the clock runs out.</p>
+          <p style="margin:0;">Rule of thumb: <strong>building &gt; browsing by the halfway mark.</strong></p>
+          <div class="scale">
+            <span>Consume</span>
+            <div class="bar"><span></span></div>
+            <span>Create</span>
+          </div>
+        </div>
+        <div class="ptile">
+          <div class="ico">🎯</div>
+          <h4>Scope to one thing</h4>
+          <p>Pick a single "wow" and make it real. Cut everything that doesn't serve the 2-minute pitch.</p>
+        </div>
+        <div class="ptile">
+          <div class="ico">🧪</div>
+          <h4>Get to a demo early</h4>
+          <p>Something running at the halfway mark, then improve it. Working-then-better beats perfect-then-nothing.</p>
+        </div>
+        <div class="ptile">
+          <div class="ico">📖</div>
+          <h4>Tell the story</h4>
+          <p>For the popular vote, the room remembers a clear problem, a live moment, and one crisp takeaway.</p>
+        </div>
+        <div class="ptile">
+          <div class="ico">🛟</div>
+          <h4>Have a fallback</h4>
+          <p>Screenshots or a short recording in your back pocket, in case the live demo misbehaves at 8:15.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="brand">Babson<span>AI</span> · Hack Overview</div>
+      <div class="links">
+        <a href="https://github.com/BabsonAI/hack_quickstart">Tools &amp; quickstart →</a>
+      </div>
+      <div class="updated">Last updated: June 2, 2026 — schedule assumes a 3-hour hack with hands-down at 8:15. Adjust the times to your event.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
