@@ -18,6 +18,19 @@ Once that's done, add libraries with pip as you need them — e.g. `pip install 
 
 ---
 
+## Version control & GitHub
+
+Save your work, track changes, and back it up. It's also what several free hosts deploy from — Streamlit Community Cloud and Hugging Face Spaces both publish straight from a repo.
+
+| Tool | Good for | Example |
+|------|----------|---------|
+| [Git](https://git-scm.com) | Track changes to your code on your own machine — snapshot your work so you can undo, branch, and see what changed. The foundation the rest build on. | `git init`, then `git add` + `git commit` to save a checkpoint as you go |
+| [GitHub](https://github.com) | Put your repo online: back it up, share it with teammates, and give judges a link. Streamlit Cloud and Hugging Face Spaces deploy from here. | Push your project so your team and the judges can see and run it |
+| [GitHub Desktop](https://desktop.github.com) | A point-and-click app for git if you'd rather skip the command line. | Commit and push with buttons instead of terminal commands |
+| [GitHub Pages](https://pages.github.com) (free) | Free hosting for a static site (HTML/CSS/JS) served straight from a repo. | Publish a landing page or visualization at a public URL |
+
+---
+
 ## LLM access: programmatic (write code that calls a model)
 
 | Tool | Good for | Example |
