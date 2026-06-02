@@ -10,14 +10,9 @@ Pick what fits from the menus below. Combine freely. New to coding on Windows? S
 
 ## Getting set up: Python & VS Code on Windows
 
-New to this? Here's the shortest path from a blank Windows machine to running Python. Microsoft's official walkthrough covers it end to end: [Get started using Python on Windows for beginners](https://learn.microsoft.com/en-us/windows/dev-environment/python?tabs=winget).
+Microsoft's official walkthrough installs Python, VS Code, and the Python extension in a few minutes via `winget`: [Set up your Python development environment on Windows](https://learn.microsoft.com/en-us/windows/dev-environment/python?tabs=winget).
 
-The essentials:
-
-1. **Install Python** — in PowerShell, run `winget install Python.Python.3.12`, or download it from [python.org/downloads](https://www.python.org/downloads/) (in the installer, tick "Add Python to PATH"). Verify with `python --version`.
-2. **Install VS Code** — Microsoft's free code editor: [code.visualstudio.com/download](https://code.visualstudio.com/download) (or run `winget install Microsoft.VisualStudioCode`).
-3. **Add the Python extension** — in VS Code, press `Ctrl+Shift+X`, search "Python," and install the one published by Microsoft. You get run buttons, autocomplete, and a debugger.
-4. **Install libraries** with pip as you need them, e.g. `pip install requests pandas`. See **Common Python libraries** below for the ones worth knowing about.
+Once that's done, add libraries with pip as you need them — e.g. `pip install requests pandas`. See **Common Python libraries** below for what's worth grabbing.
 
 > Tip: keep each project's packages isolated with a virtual environment — run `python -m venv .venv`, then `.\.venv\Scripts\Activate.ps1` in PowerShell. Optional for a 3-hour hack, but it keeps things tidy.
 
