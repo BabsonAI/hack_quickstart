@@ -4,7 +4,22 @@
 
 3 hours. Build something interesting. Have something to show.
 
-Pick what fits from the menus below. Combine freely.
+Pick what fits from the menus below. Combine freely. New to coding on Windows? Start with **Getting set up** just below.
+
+---
+
+## Getting set up: Python & VS Code on Windows
+
+New to this? Here's the shortest path from a blank Windows machine to running Python. Microsoft's official walkthrough covers it end to end: [Get started using Python on Windows for beginners](https://learn.microsoft.com/en-us/windows/dev-environment/python?tabs=winget).
+
+The essentials:
+
+1. **Install Python** — in PowerShell, run `winget install Python.Python.3.12`, or download it from [python.org/downloads](https://www.python.org/downloads/) (in the installer, tick "Add Python to PATH"). Verify with `python --version`.
+2. **Install VS Code** — Microsoft's free code editor: [code.visualstudio.com/download](https://code.visualstudio.com/download) (or run `winget install Microsoft.VisualStudioCode`).
+3. **Add the Python extension** — in VS Code, press `Ctrl+Shift+X`, search "Python," and install the one published by Microsoft. You get run buttons, autocomplete, and a debugger.
+4. **Install libraries** with pip as you need them, e.g. `pip install requests pandas`. See **Common Python libraries** below for the ones worth knowing about.
+
+> Tip: keep each project's packages isolated with a virtual environment — run `python -m venv .venv`, then `.\.venv\Scripts\Activate.ps1` in PowerShell. Optional for a 3-hour hack, but it keeps things tidy.
 
 ---
 
@@ -56,6 +71,21 @@ Pick what fits from the menus below. Combine freely.
 | [`langchain`](https://python.langchain.com) / [`llama-index`](https://docs.llamaindex.ai) (Python) | Pre-built abstractions for chains, retrieval, and agents. Saves wiring time at the cost of a learning curve. | Build a retrieval-augmented Q&A app with less manual plumbing |
 | [Vercel AI SDK](https://ai-sdk.dev) (JavaScript / TypeScript) | A free, open-source toolkit for building LLM apps in JS/TS. One unified API across providers (Claude, GPT, Gemini), with streaming and tool calling built in. | Build a Next.js chat app that streams responses and can swap models with one line |
 | [LangGraph](https://www.langchain.com/langgraph) (Python / JavaScript) | A framework for building agent workflows: you map out the steps and decisions an agent moves through, and it handles the looping, tool calls, and state along the way. More control than a plain chain, but more setup too. | Build a research agent that decides at each step whether to search, read, or answer |
+
+## Common Python libraries
+
+Basic, everyday building blocks you'll reach for in almost any Python project. Install with `pip install <name>`.
+
+| Library | Good for | Example |
+|---------|----------|---------|
+| [`requests`](https://requests.readthedocs.io) | The standard way to call a REST API or fetch a web page from Python — `GET`/`POST`, headers, and JSON in a few lines. | Pull live data from a public API (weather, stocks, sports) to feed into your app |
+| [`pandas`](https://pandas.pydata.org) | Load, clean, filter, and summarize tabular data (CSV, Excel, JSON). The workhorse for anything spreadsheet-shaped. | Read a messy CSV, group and total it, and show the result in your demo |
+| [`python-dotenv`](https://pypi.org/project/python-dotenv/) | Load secrets like API keys from a `.env` file instead of hard-coding them — keeps keys out of your code and out of git. | Keep `ANTHROPIC_API_KEY` in `.env` and read it with `os.getenv` |
+| [`matplotlib`](https://matplotlib.org) / [`plotly`](https://plotly.com/python/) | Turn numbers into charts. matplotlib is the classic; plotly makes interactive ones. | Plot a trend line or bar chart straight from your pandas data |
+| [`numpy`](https://numpy.org) | Fast math over arrays of numbers — the foundation most data and ML libraries are built on. | Crunch a big list of numbers without slow Python loops |
+| [`beautifulsoup4`](https://www.crummy.com/software/BeautifulSoup/) | Parse and pull data out of HTML — i.e. scrape a page after you fetch it with `requests`. | Grab the headlines off a news page, then summarize them with an LLM |
+| [`Pillow`](https://python-pillow.org) | Open, resize, crop, and convert images (imported as `PIL`). | Resize user-uploaded images before sending them to a vision model |
+| [`pydantic`](https://docs.pydantic.dev) | Define the exact shape of your data and validate it automatically — pairs naturally with LLM "structured output." | Make the model return JSON that matches a `User` schema you defined |
 
 ## UI / front-end
 
